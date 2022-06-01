@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+	<group android:checkableBehavior="single">
+		<item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/tel"
+            android:title="Telegram" />
+		<item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/insta"
+            android:title="Instagram" />
+		<item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/you"
+            android:title="YouTube" />
+		<item
+            android:id="@+id/github"
+            android:icon="@drawable/github"
+            android:title="GitHub" />
+
+		<item
+            android:id="@+id/myket"
+            android:icon="@drawable/myket"
+            android:title="More Apps" />
+	</group>
+
+	<item android:title="More">
+		<menu>
+			
+			<item
+                android:id="@+id/wondo"
+                android:icon="@drawable/windo"
+                android:title="Get Windows Version" />
+
+			<item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+		</menu>
+	</item>
+
+</menu>
