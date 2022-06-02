@@ -28,6 +28,10 @@ namespace sub_Transleator_x
             int prograss = 0;
             for (int i = 0; i < Input.Count; i++)
             {
+                if(App1.publicClassAndroid.StButtonStatuse == true) 
+                {
+                    return new List<string>();
+                }
                 //int prograss = 0;
                 temp.Add(TransleatClass.Translate(from, to, Input[i]) + "\n\n");
 
@@ -61,15 +65,15 @@ namespace sub_Transleator_x
             }
         }
 
-       public static async Task SubTransleatAsync(string input) 
+       public static async Task SubTransleatAsync(string input , List<string> file) 
         {
             await Task.Run(() => 
             {
-                SubTransleat(input);
+                SubTransleat(input , file);
             });
         }
         //MINA METODE
-        private static void SubTransleat(string input)
+        private static void SubTransleat(string input , List<string> file)
         {
             //FolderBrowserDialog ob = new FolderBrowserDialog();
             //ob.ShowDialog();
@@ -83,17 +87,29 @@ namespace sub_Transleator_x
                 List<string> fileLine = new List<string>();
                 List<string> itemSub = new List<string>();
                 //Get List File Sub as Directory
-                foreach (var element in Directory.GetFiles(PathFolder))
+                if (PathFolder != "selected file " + '\u2713') 
                 {
-                    if (Path.GetExtension(element).ToUpper() == ".srt".ToUpper())
+                    foreach (var element in Directory.GetFiles(PathFolder))
                     {
-                        mylestFile.Add(element);
+                        if (Path.GetExtension(element).ToUpper() == ".srt".ToUpper())
+                        {
+                            mylestFile.Add(element);
+                        }
                     }
+                }
+                else 
+                {
+                    PathFolder = "";
+                    for (int i = 0; i < file[0].Split('/').Length - 1; i++)
+                    {
+                        PathFolder += file[0].Split('/')[i] + '/';
+                    }
+                    mylestFile.AddRange(file);
                 }
                 if (mylestFile.Count == 0)
                 {
                     //println("Folder Slectde Is Empty !");
-                    SubTransleat(input);
+                    SubTransleat(input , file);
                 }
                 else
                 {
@@ -113,7 +129,6 @@ namespace sub_Transleator_x
                     catch (Exception)
                     {
                         PathFolderExport = "/storage/emulated/0/Download/";
-                        throw;
                     }
                     
                     //---------------------------------------------------
@@ -184,6 +199,11 @@ namespace sub_Transleator_x
                         //print("\n");
                         //println($"start Transleate File : {Path.GetFileName(mylestFile[v])}");
                         List<string> Transleatv = Transleat(Text);
+                        if (App1.publicClassAndroid.StButtonStatuse == true)
+                        {
+                            App1.publicClassAndroid.StButtonStatuse = false;
+                            return;
+                        }
                         string temp = CrateFinalList(info, Transleatv);
                         //-------------------------------------------
                         try

@@ -11,9 +11,11 @@ namespace App1
     {
         private string path_maian = "/storage/emulated/0/";
         private string this_pats = "/storage/emulated/0/";
+
         private ListView listFolder;
         private readonly List<string> FolderArrayAddresFull = new List<string>();
         private readonly List<string> name_Folder = new List<string>();
+        private readonly List<int> IdFile = new List<int>();
 
         private Button btnbackFolder;
         private Button btnChose;
@@ -34,14 +36,18 @@ namespace App1
 
             listFolder.ItemClick += Click_List_View;
 
-            #region GetPermison
-            
-            #endregion
-
             btnChose.Click += (s, e)=>
             {
-                StartActivity(typeof(MainActivity));
+                if(IdFile.Count != 0) 
+                {
+                    foreach (var item in IdFile)
+                    {
+                        publicClassAndroid.FileSelected.Add($"{this_pats}{name_Folder[item]}");
+                    }
+                    this_pats = "selected file " + '\u2713';
+                }
                 publicClassAndroid.Folderpath = this_pats;
+                StartActivity(typeof(MainActivity));
                 Finish();
             };
 
@@ -54,6 +60,8 @@ namespace App1
                 {
                     bakfol += this_pats.Split('/')[i] + '/';
                 }
+                IdFile.Clear();
+                btnChose.Text = "انتخاب پوشه";
                 show_Folder(bakfol);
             };
         }
@@ -64,7 +72,34 @@ namespace App1
         }
         private void Click_List_View(object sender , AdapterView.ItemClickEventArgs e) 
         {
-            show_Folder($"{this_pats}{name_Folder[e.Position]}/");
+            if(Path.GetExtension($"{this_pats}{name_Folder[e.Position]}").ToUpper() == ".SRT") 
+            {
+                foreach (var item in IdFile)
+                {
+                    if(item == e.Position) 
+                    {
+                        TextView txtv = e.View as TextView;
+                        txtv.Text = name_Folder[e.Position];
+                        IdFile.Remove(item);
+                        if(IdFile.Count == 0) 
+                        {
+                            btnChose.Text = "انتخاب پوشه";
+                        }
+                        return;
+                    }
+                }
+                IdFile.Add(e.Position);
+                TextView txt = e.View as TextView;
+                txt.Text = '\u2713' + " " + txt.Text;
+                btnChose.Text = "انتخاب فایل ها";
+
+            }
+            else
+            {
+                IdFile.Clear();
+                show_Folder($"{this_pats}{name_Folder[e.Position]}/");
+            }
+            
         }
 
         private void show_Folder(string path) 
@@ -78,6 +113,18 @@ namespace App1
             try 
             {
                 FolderArrayAddresFull.AddRange(Directory.GetDirectories(path));
+
+                List<string> ListStr = new List<string>();
+
+                ListStr.AddRange(Directory.EnumerateFiles(path));
+
+                foreach (var item in ListStr)
+                {
+                    if(Path.GetExtension(item).ToUpper() == ".SRT") 
+                    {
+                        FolderArrayAddresFull.Add(item);
+                    }
+                }
             }
             catch(System.Exception ex) 
             {
