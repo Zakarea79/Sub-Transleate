@@ -42,11 +42,16 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-    <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>C:\Users\SZA\Desktop\pixelRun.keystore</AndroidSigningKeyStore>
-    <AndroidSigningStorePass>13781101</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>13781101</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>13781101</AndroidSigningKeyPass>
+    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidSigningKeyStore>
+    </AndroidSigningKeyStore>
+    <AndroidSigningStorePass>
+    </AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>
+    </AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>
+    </AndroidSigningKeyPass>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -60,7 +65,7 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidKeyStore>false</AndroidKeyStore>
     <AndroidSigningKeyStore>C:\Users\SZA\Desktop\pixelRun.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>13781101</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>supernovao</AndroidSigningKeyAlias>

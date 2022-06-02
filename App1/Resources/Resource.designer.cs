@@ -4209,16 +4209,13 @@ namespace App1
 			public const int visible_removing_fragment_view_tag = 2131230975;
 			
 			// aapt resource value: 0x7F080100
-			public const int webView1 = 2131230976;
+			public const int withText = 2131230976;
 			
 			// aapt resource value: 0x7F080101
-			public const int withText = 2131230977;
+			public const int wondo = 2131230977;
 			
 			// aapt resource value: 0x7F080102
-			public const int wondo = 2131230978;
-			
-			// aapt resource value: 0x7F080103
-			public const int wrap_content = 2131230979;
+			public const int wrap_content = 2131230978;
 			
 			static Id()
 			{
