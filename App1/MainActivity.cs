@@ -108,8 +108,8 @@ namespace App1
             {
                 if(btnChack == false) 
                 {
-                    StartTransleat();
                     btnChack = true;
+                    StartTransleat();
                     publicClassAndroid.StButtonStatuse = false;
                 }
                 else if(publicClassAndroid.StButtonStatuse == false)
@@ -146,6 +146,7 @@ namespace App1
                 if (chFile() == false)
                 {
                     Android.Widget.Toast.MakeText(this, "در مسیر انتخاب شده فایل معتبری پیدا نشد", Android.Widget.ToastLength.Long).Show();
+                    btnChack = false;
                     return;
                 }
 
@@ -211,6 +212,7 @@ namespace App1
             else
             {
                 Android.Widget.Toast.MakeText(this, "لطفا مسیری انتخاب کنید", Android.Widget.ToastLength.Long).Show();
+                btnChack = false;
             }
         }
 
@@ -293,17 +295,17 @@ namespace App1
                 var inte = new Intent(Intent.ActionView, uri);
                 StartActivity(inte);
             }
-            else if (id == Resource.Id.nav_share)
-            {
-                Task.Run(async () =>
-                {
-                    await sherText(@"شده اموزش زبان اصلی دانلود کنی
-ولی زیر نویس فارسی نداشته باشه؟
-یا فیلم و سریال قدیمی که زیرنویس فارسی هماهنگ پیدا نکنی؟
-با دریافت اپلیکش راحت زیر نویس ها رو از هر زبانی به فارسی برگردون
-https://myket.ir/app/myc.supernova.substitutetranslate");
-                });
-            }
+//            else if (id == Resource.Id.nav_share)
+//            {
+//                Task.Run(async () =>
+//                {
+//                    await sherText(@"شده اموزش زبان اصلی دانلود کنی
+//ولی زیر نویس فارسی نداشته باشه؟
+//یا فیلم و سریال قدیمی که زیرنویس فارسی هماهنگ پیدا نکنی؟
+//با دریافت اپلیکش راحت زیر نویس ها رو از هر زبانی به فارسی برگردون
+//https://myket.ir/app/myc.supernova.substitutetranslate");
+//                });
+//            }
             else if(id == Resource.Id.github) 
             {
                 var uri = Android.Net.Uri.Parse("https://github.com/Zakarea79");
@@ -312,7 +314,8 @@ https://myket.ir/app/myc.supernova.substitutetranslate");
             }
             else if(id == Resource.Id.myket) 
             {
-                var uri = Android.Net.Uri.Parse("https://myket.ir/developer/dev-65034");
+                //var uri = Android.Net.Uri.Parse("https://myket.ir/developer/dev-65034");
+                var uri = Android.Net.Uri.Parse("https://www.charkhoneh.com/collection/78692/game/110806");
                 var inte = new Intent(Intent.ActionView, uri);
                 StartActivity(inte);
             }

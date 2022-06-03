@@ -5,20 +5,23 @@
     <string name="action_settings">Settings</string>
 	<!-- My Varable -->
 	
-	<!-- folder picker -->
-	<string name="folderChose">انتخاب پوشه</string>
-	<string name="folderBack">پوشه قبل</string>
-	<!-- folder picker -->
+		<!-- folder picker -->
+		<string name="folderChose">انتخاب پوشه</string>
+		<string name="folderBack">پوشه قبل</string>
+		<!-- folder picker -->
 
-	<!-- content main -->
-	<string name="contentChoseFiles">انتخاب فایل ها</string>
-	<string name="contentStartTransleat">شروع ترجمه</string>
-	<string name="contentUnselectedfolder">Unselected folder</string>
-	<string name="contentSlang">زبان مبدا</string>
-	<string name="contentElang">زبان مقصد</string>
-	<string name="contentPersent">0%</string>
-	<!-- content main -->
-	
+		<!-- content main -->
+		<string name="contentChoseFiles">انتخاب فایل ها</string>
+		<string name="contentStartTransleat">شروع ترجمه</string>
+		<string name="contentUnselectedfolder">Unselected folder</string>
+		<string name="contentSlang">زبان مبدا</string>
+		<string name="contentElang">زبان مقصد</string>
+		<string name="contentPersent">0%</string>
+		<!-- content main -->
+
+		<!-- nav header-->
+		<string name="email">supernovaofficialmain@gmail.com</string>
+		<!-- nav header-->
 	
 	<!-- My Varable -->
 

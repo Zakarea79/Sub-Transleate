@@ -23,7 +23,7 @@
 
 		<item
             android:id="@+id/myket"
-            android:icon="@drawable/myket"
+            android:icon="@drawable/xhar"
             android:title="More Apps" />
 	</group>
 
@@ -34,11 +34,13 @@
                 android:id="@+id/wondo"
                 android:icon="@drawable/windo"
                 android:title="Get Windows Version" />
-
+			<!--
 			<item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
+				-->
+				
 		</menu>
 	</item>
 
