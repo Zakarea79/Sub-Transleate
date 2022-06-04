@@ -3,10 +3,6 @@ using Android.OS;
 using System.IO;
 using Android.Widget;
 using System.Collections.Generic;
-//-------------
-using AndroidX.AppCompat.App;
-using Google.Android.Material.Navigation;
-using Android.Views;
 
 namespace App1
 {
