@@ -82,17 +82,17 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DecodJson.cs" />
-    <Compile Include="FolderPicker.cs" />
-    <Compile Include="getDataJs.cs" />
-    <Compile Include="Loger.cs" />
-    <Compile Include="MainActivity.cs" />
-    <Compile Include="publicClassAndroid.cs" />
+    <Compile Include="Script\DecodJson.cs" />
+    <Compile Include="Script\FolderPicker.cs" />
+    <Compile Include="Script\getDataJs.cs" />
+    <Compile Include="Script\Loger.cs" />
+    <Compile Include="Script\MainActivity.cs" />
+    <Compile Include="Script\publicClassAndroid.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sendRequestForServer.cs" />
-    <Compile Include="Translaet.cs" />
-    <Compile Include="TransleatClass.cs" />
+    <Compile Include="Script\sendRequestForServer.cs" />
+    <Compile Include="Script\Translaet.cs" />
+    <Compile Include="Script\TransleatClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -185,6 +185,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\xhar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\menu_item.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

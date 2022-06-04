@@ -99,7 +99,6 @@ namespace App1
             #region Button
             BtnOpenFolder.Click += (s, e) =>
             {
-                
                 StartActivity(typeof(FolderPicker));
                 Finish();
             };

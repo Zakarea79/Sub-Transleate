@@ -3,10 +3,14 @@ using Android.OS;
 using System.IO;
 using Android.Widget;
 using System.Collections.Generic;
+//-------------
+using AndroidX.AppCompat.App;
+using Google.Android.Material.Navigation;
+using Android.Views;
 
 namespace App1
 {
-    [Activity(Label = "@string/app_name")]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class FolderPicker : Activity
     {
         private string path_maian = "/storage/emulated/0/";
@@ -20,13 +24,14 @@ namespace App1
         private Button btnbackFolder;
         private Button btnChose;
 
-        [System.Obsolete]
-        #pragma warning disable CS0809 // Obsolete member overrides non-obsolete member
+       
         protected override void OnCreate(Bundle savedInstanceState)
-        #pragma warning restore CS0809 // Obsolete member overrides non-obsolete member
         {
             base.OnCreate(savedInstanceState);
+
             SetContentView(Resource.Layout.folderpicker);
+
+            SetTheme(Resource.Style.AppTheme);
 
             btnbackFolder = FindViewById<Button>(Resource.Id.buttonFolderBack);
             btnChose = FindViewById<Button>(Resource.Id.buttonSelect);
@@ -65,6 +70,7 @@ namespace App1
                 show_Folder(bakfol);
             };
         }
+
         public override void OnBackPressed()
         {
             StartActivity(typeof(MainActivity));
