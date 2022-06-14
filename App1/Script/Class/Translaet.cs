@@ -12,7 +12,6 @@ namespace sub_Transleator_x
     {
         static public string PathFolder = "";
         static public string PathFolderExport;
-        static int from = 0, to = 0;
         //static private List<string> Calection = new List<string>();
         //--------------------------------------------------------
         static private List<string> info = new List<string>();
@@ -28,17 +27,17 @@ namespace sub_Transleator_x
             int prograss = 0;
             for (int i = 0; i < Input.Count; i++)
             {
-                if(App1.publicClassAndroid.StButtonStatuse == true) 
+                if (App1.publicClassAndroid.StButtonStatuse == true)
                 {
                     return new List<string>();
                 }
                 //int prograss = 0;
-                temp.Add(TransleatClass.Translate(from, to, Input[i]) + "\n\n");
+                temp.Add(TransleatClass.Translate(Input[i]) + "\n\n");
 
-                PrograssBar("#" , i , Input.Count ,ref prograss);
-                App1.MainActivity.data.Persent = prograss;
+                PrograssBar("#", i, Input.Count, ref prograss);
+                App1.auto_transleat.data.Persent = prograss;
             }
-            App1.MainActivity.data.Persent = 100;
+            App1.auto_transleat.data.Persent = 100;
             Thread.Sleep(1000);
             //if(prograss >= 97)
             //{
@@ -46,7 +45,7 @@ namespace sub_Transleator_x
             //}
             return temp;
         }
-    
+
         //CrateFinalList
         private static string CrateFinalList(List<string> INFO, List<string> TEXT)
         {
@@ -65,15 +64,15 @@ namespace sub_Transleator_x
             }
         }
 
-       public static async Task SubTransleatAsync(string input , List<string> file) 
+        public static async Task SubTransleatAsync(string input, List<string> file)
         {
-            await Task.Run(() => 
+            await Task.Run(() =>
             {
-                SubTransleat(input , file);
+                SubTransleat(input, file);
             });
         }
         //MINA METODE
-        private static void SubTransleat(string input , List<string> file)
+        private static void SubTransleat(string input, List<string> file)
         {
             //FolderBrowserDialog ob = new FolderBrowserDialog();
             //ob.ShowDialog();
@@ -87,7 +86,7 @@ namespace sub_Transleator_x
                 List<string> fileLine = new List<string>();
                 List<string> itemSub = new List<string>();
                 //Get List File Sub as Directory
-                if (PathFolder != "selected file " + '\u2713') 
+                if (PathFolder != "selected file " + '\u2713')
                 {
                     foreach (var element in Directory.GetFiles(PathFolder))
                     {
@@ -97,7 +96,7 @@ namespace sub_Transleator_x
                         }
                     }
                 }
-                else 
+                else
                 {
                     PathFolder = "";
                     for (int i = 0; i < file[0].Split('/').Length - 1; i++)
@@ -109,7 +108,7 @@ namespace sub_Transleator_x
                 if (mylestFile.Count == 0)
                 {
                     //println("Folder Slectde Is Empty !");
-                    SubTransleat(input , file);
+                    SubTransleat(input, file);
                 }
                 else
                 {
@@ -130,7 +129,7 @@ namespace sub_Transleator_x
                     {
                         PathFolderExport = "/storage/emulated/0/Download/";
                     }
-                    
+
                     //---------------------------------------------------
                     //Read Line File Seave TO List file Line
                     for (int v = 0; v < mylestFile.Count; v++)
@@ -210,16 +209,16 @@ namespace sub_Transleator_x
                         {
                             File.WriteAllLines(PathFolderExport + Path.GetFileName(mylestFile[v]), temp.Split('\n'), Encoding.UTF8);
                         }
-                        catch (Exception) 
+                        catch (Exception)
                         {
-                            if(File.Exists("/storage/emulated/0/Download/" + Path.GetFileName(mylestFile[v]))) 
+                            if (File.Exists("/storage/emulated/0/Download/" + Path.GetFileName(mylestFile[v])))
                             {
                                 File.Delete("/storage/emulated/0/Download/" + Path.GetFileName(mylestFile[v]));
                             }
                             File.WriteAllLines("/storage/emulated/0/Download/" + Path.GetFileName(mylestFile[v]), temp.Split('\n'), Encoding.UTF8);
                         }
 
-                        App1.MainActivity.data.Name = mylestFile[v];
+                        App1.auto_transleat.data.Name = mylestFile[v];
                         //Log Prograss Folder
                         //-------------------------------------------
                         temp = "";

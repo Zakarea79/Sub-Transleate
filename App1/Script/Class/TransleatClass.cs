@@ -48,11 +48,11 @@ namespace sub_Transleator_x
 		
 		private static string JsonDecod(string JsonData) 
 		{
-			Root tmp = JsonConvert.DeserializeObject<Root>(JsonData);
+			var tmp = JsonConvert.DeserializeObject<Root>(JsonData);
 			return tmp.sentences[0].trans;
 		}
 
-        public static string Translate(int from, int to , string input)
+        public static string Translate(string input)
         {
 			RequestSupernova.requestSetting.source = Language[App1.publicClassAndroid.From];
 			RequestSupernova.requestSetting.target = Language[App1.publicClassAndroid.To];

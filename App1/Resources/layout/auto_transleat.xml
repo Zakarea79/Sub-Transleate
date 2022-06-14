@@ -9,19 +9,45 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarme"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <ImageView
+            android:src="@drawable/bak_button"
+            android:layout_marginTop="10dip"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:id="@+id/buttonBak"
+            android:layout_alignRight="@id/toolbarme"
+            android:contentDescription="@string/description" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/contentChoseFiles"
         android:id="@+id/MainActivityBtnOpenFolder"/>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/contentStartTransleat"
         android:id="@+id/MainActivityBtnStartTranslet"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

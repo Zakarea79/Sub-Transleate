@@ -5,13 +5,13 @@ using System.Threading;
 
 namespace sub_Transleator_x
 {
-    class RequestSetting
+    internal class RequestSetting
     {
         public string text;
         public string source;
         public string target;
     }
-    class RequestSupernova
+    internal class RequestSupernova
     {
         public static RequestSetting requestSetting = new RequestSetting();
         public static string sendData(string Url, Dictionary<string, string> data)

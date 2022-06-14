@@ -61,7 +61,7 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidKeyStore>true</AndroidKeyStore>
     <AndroidSigningKeyStore>C:\Users\SZA\Desktop\pixelRun.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>13781101</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>supernovao</AndroidSigningKeyAlias>
@@ -74,6 +74,7 @@
     </AndroidApkSignerAdditionalArguments>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Android.Export" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -82,17 +83,22 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Script\DecodJson.cs" />
-    <Compile Include="Script\FolderPicker.cs" />
-    <Compile Include="Script\getDataJs.cs" />
-    <Compile Include="Script\Loger.cs" />
-    <Compile Include="Script\MainActivity.cs" />
-    <Compile Include="Script\publicClassAndroid.cs" />
+    <Compile Include="Script\Activity\CratenewProject.cs" />
+    <Compile Include="Script\Activity\handelSub.cs" />
+    <Compile Include="Script\Activity\aotu_transleat.cs" />
+    <Compile Include="Script\Activity\VidoPlayer.cs" />
+    <Compile Include="Script\Class\DecodJson.cs" />
+    <Compile Include="Script\Activity\FolderPicker.cs" />
+    <Compile Include="Script\Class\getDataJs.cs" />
+    <Compile Include="Script\Class\Loger.cs" />
+    <Compile Include="Script\Activity\MainActivity.cs" />
+    <Compile Include="Script\Class\publicClassAndroid.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Script\sendRequestForServer.cs" />
-    <Compile Include="Script\Translaet.cs" />
-    <Compile Include="Script\TransleatClass.cs" />
+    <Compile Include="Script\Class\ReadSub.cs" />
+    <Compile Include="Script\Class\sendRequestForServer.cs" />
+    <Compile Include="Script\Class\Translaet.cs" />
+    <Compile Include="Script\Class\TransleatClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -106,7 +112,7 @@
     <AndroidResource Include="Resources\layout\app_bar_main.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\content_main.xml">
+    <AndroidResource Include="Resources\layout\auto_transleat.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\nav_header_main.xml">
@@ -187,9 +193,63 @@
     <AndroidResource Include="Resources\drawable\xhar.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\menu_item.xml">
+    <AndroidResource Include="Resources\layout\VidoioPlayer.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\puse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\layout1.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CustomView.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\handel_transleat.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\CustomViewSubTransleat.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\crate_new_project.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\mainLayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DalogDeleteView.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DalogSaveView.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bak_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\deletbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\savebtn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
