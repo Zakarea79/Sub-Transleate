@@ -153,17 +153,17 @@ namespace App1
             {
                 Task.Run(async () =>
                 {
-                    //await sherText(@"شده اموزش زبان اصلی دانلود کنی
-                    //ولی زیر نویس فارسی نداشته باشه؟
-                    //یا فیلم و سریال قدیمی که زیرنویس فارسی هماهنگ پیدا نکنی؟
-                    //با دریافت این اپلیکشن راحت زیر نویس ها رو از هر زبانی به فارسی ترجمه کن
-                    //https://www.charkhoneh.com/content/931172500");
-
                     await sherText(@"شده اموزش زبان اصلی دانلود کنی
                     ولی زیر نویس فارسی نداشته باشه؟
                     یا فیلم و سریال قدیمی که زیرنویس فارسی هماهنگ پیدا نکنی؟
                     با دریافت این اپلیکشن راحت زیر نویس ها رو از هر زبانی به فارسی ترجمه کن
-                    https://myket.ir/app/myc.supernova.substitutetranslate");
+                    https://www.charkhoneh.com/content/931172500");
+
+                    //await sherText(@"شده اموزش زبان اصلی دانلود کنی
+                    //ولی زیر نویس فارسی نداشته باشه؟
+                    //یا فیلم و سریال قدیمی که زیرنویس فارسی هماهنگ پیدا نکنی؟
+                    //با دریافت این اپلیکشن راحت زیر نویس ها رو از هر زبانی به فارسی ترجمه کن
+                    //https://myket.ir/app/myc.supernova.substitutetranslate");
                 });
             }
             else if (id == Resource.Id.github)
@@ -174,8 +174,8 @@ namespace App1
             }
             else if (id == Resource.Id.myket)
             {
-                var uri = Android.Net.Uri.Parse("https://myket.ir/developer/dev-65034");
-                //var uri = Android.Net.Uri.Parse("https://www.charkhoneh.com/collection/78692/game/110806");
+                //var uri = Android.Net.Uri.Parse("https://myket.ir/developer/dev-65034");
+                var uri = Android.Net.Uri.Parse("https://www.charkhoneh.com/collection/78692/game/110806");
                 var inte = new Intent(Intent.ActionView, uri);
                 StartActivity(inte);
             }

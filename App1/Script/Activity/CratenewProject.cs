@@ -21,20 +21,6 @@ namespace App1
 
             SetContentView(Resource.Layout.crate_new_project);
 
-            #region ResatData
-            publicClassAndroid.info.form = 0;
-            publicClassAndroid.info.to = 0;
-            publicClassAndroid.info.Transleat.Clear();
-            publicClassAndroid.info.pathSrtFile = "";
-
-            publicClassAndroid.To = 0;
-            publicClassAndroid.From = 0;
-            publicClassAndroid.StButtonStatuse = false;
-            publicClassAndroid.Folderpath = "";
-            publicClassAndroid.FileSelected.Clear();
-            publicClassAndroid.enumBtnStatuse = backButtonStatuse.mainLayout;
-            #endregion
-
             #region Set ID
             buttonSelectFile = FindViewById<Button   > (Resource.Id.chFile            );
             buttonCrateProject = FindViewById<Button   > (Resource.Id.CarteProject      );
@@ -52,6 +38,7 @@ namespace App1
 
             backVisullButton.Click += (s, e) =>
             {
+                publicClassAndroid.ReseatData();
                 StartActivity(typeof(MainActivity));
                 Finish();
             };
@@ -122,6 +109,7 @@ namespace App1
         }
         public override void OnBackPressed()
         {
+            publicClassAndroid.ReseatData();
             StartActivity(typeof(MainActivity));
             Finish();
         }

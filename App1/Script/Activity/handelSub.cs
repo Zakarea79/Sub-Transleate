@@ -60,6 +60,7 @@ namespace App1
                 }
                 else
                 {
+                    publicClassAndroid.ReseatData();
                     StartActivity(typeof(CratenewProject));
                     Finish();
                 }
@@ -269,6 +270,7 @@ namespace App1
                 }
                 else
                 {
+                    publicClassAndroid.ReseatData();
                     StartActivity(typeof(CratenewProject));
                     Finish();
                 }

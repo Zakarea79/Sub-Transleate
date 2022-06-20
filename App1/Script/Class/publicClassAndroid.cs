@@ -15,5 +15,21 @@ namespace App1
         public static int To = 0;
         public static bool StButtonStatuse = false;
         public static ProjectInfo info = new ProjectInfo();
+
+        public static void ReseatData() 
+        {
+            info.form = 0;
+            info.to = 0;
+            info.Transleat.Clear();
+            info.pathSrtFile = "";
+            //-------------------------
+            To = 0;
+            From = 0;
+            StButtonStatuse = false;
+            Folderpath = "";
+            FileSelected.Clear();
+            enumBtnStatuse = backButtonStatuse.mainLayout;
+        }
+
     }
 }
