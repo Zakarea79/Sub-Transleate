@@ -14,22 +14,41 @@ namespace App1
         private TextView TextFilePath;
         private Spinner FirstLang, secendLang;
         private ListView ProjectListView;
-        private string PathJsonFile = $"/storage/emulated/0/Android/data/myc.supernova.substitutetranslate/";
+        private readonly string PathJsonFile = "/storage/emulated/0/subproject/";
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.crate_new_project);
 
-            #region Set ID
-            buttonSelectFile = FindViewById<Button>(Resource.Id.chFile);
-            buttonCrateProject = FindViewById<Button>(Resource.Id.CarteProject);
-            backVisullButton = FindViewById<ImageView>(Resource.Id.buttonBak);
-            TextFilePath = FindViewById<TextView>(Resource.Id.Textselectfile);
-            FirstLang = FindViewById<Spinner>(Resource.Id.spinnerFromProject);
-            secendLang = FindViewById<Spinner>(Resource.Id.spinnerToProject);
-            ProjectListView = FindViewById<ListView>(Resource.Id.listViewProject);
+            #region ResatData
+            publicClassAndroid.info.form = 0;
+            publicClassAndroid.info.to = 0;
+            publicClassAndroid.info.Transleat.Clear();
+            publicClassAndroid.info.pathSrtFile = "";
+
+            publicClassAndroid.To = 0;
+            publicClassAndroid.From = 0;
+            publicClassAndroid.StButtonStatuse = false;
+            publicClassAndroid.Folderpath = "";
+            publicClassAndroid.FileSelected.Clear();
+            publicClassAndroid.enumBtnStatuse = backButtonStatuse.mainLayout;
             #endregion
+
+            #region Set ID
+            buttonSelectFile = FindViewById<Button   > (Resource.Id.chFile            );
+            buttonCrateProject = FindViewById<Button   > (Resource.Id.CarteProject      );
+            backVisullButton   = FindViewById<ImageView> (Resource.Id.buttonBak         );
+            TextFilePath       = FindViewById<TextView > (Resource.Id.Textselectfile    );
+            FirstLang          = FindViewById<Spinner  > (Resource.Id.spinnerFromProject);
+            secendLang         = FindViewById<Spinner  > (Resource.Id.spinnerToProject  );
+            ProjectListView    = FindViewById<ListView > (Resource.Id.listViewProject   );
+            #endregion
+
+            if(Directory.Exists(PathJsonFile) == false) 
+            {
+                Directory.CreateDirectory(PathJsonFile);
+            }
 
             backVisullButton.Click += (s, e) =>
             {

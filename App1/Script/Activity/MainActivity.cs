@@ -15,10 +15,11 @@ using Android.Content.PM;
 using Android;
 using AndroidX.Core.Content;
 using System;
+using System.IO;
 
 namespace App1
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar" ,  MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -42,14 +43,14 @@ namespace App1
             Android.Widget.Button btnaotutransleat = FindViewById<Android.Widget.Button>(Resource.Id.aouttransleat);
             Android.Widget.Button btncrateproject = FindViewById<Android.Widget.Button>(Resource.Id.CrateProject);
 
-            btnaotutransleat.Click += (s, e) => 
+            btnaotutransleat.Click += (s, e) =>
             {
                 publicClassAndroid.enumBtnStatuse = backButtonStatuse.autoTransleat;
                 StartActivity(typeof(auto_transleat));
                 Finish();
             };
 
-            btncrateproject.Click += (s, e) => 
+            btncrateproject.Click += (s, e) =>
             {
                 publicClassAndroid.enumBtnStatuse = backButtonStatuse.crateProject;
                 StartActivity(typeof(CratenewProject));
@@ -61,25 +62,41 @@ namespace App1
         protected override void OnStart()
         {
             base.OnStart();
-
-            if (ContextCompat.CheckSelfPermission(this, "ndroid.permission.WRITE_EXTERNAL_STORAGE") != Permission.Granted)
+            if (Build.VERSION.SdkInt > BuildVersionCodes.Lollipop)
             {
-                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.WriteExternalStorage }, 0);
+                if (ContextCompat.CheckSelfPermission(this, "android.permission.WRITE_EXTERNAL_STORAGE") != Permission.Granted)
+                {
+                    ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.WriteExternalStorage }, 0);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Permission Granted!!!");
+                }
+                if (ContextCompat.CheckSelfPermission(this, "android.permission.READ_EXTERNAL_STORAGE") != Permission.Granted)
+                {
+                    ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.ReadExternalStorage }, 0);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Permission Granted!!!");
+                }
             }
-            else
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
             {
-                System.Diagnostics.Debug.WriteLine("Permission Granted!!!");
-            }
-            if (ContextCompat.CheckSelfPermission(this, "android.permission.READ_EXTERNAL_STORAGE") != Permission.Granted)
-            {
-                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.ReadExternalStorage }, 0);
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("Permission Granted!!!");
+                try
+                {
+                    File.WriteAllText("/storage/emulated/0/file.t", "");
+                    File.Delete("/storage/emulated/0/file.t");
+                }
+                catch (Exception)
+                {
+                    Intent intent = new Intent(Android.Provider.Settings.ActionManageAppAllFilesAccessPermission);
+                    intent.SetData(Android.Net.Uri.Parse($"package:{Application.Context.PackageName}"));
+                    StartActivity(intent);
+                }
             }
         }
-        
+
         public override void OnBackPressed()
         {
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -136,12 +153,12 @@ namespace App1
             {
                 Task.Run(async () =>
                 {
-                    //                    await sherText(@"شده اموزش زبان اصلی دانلود کنی
+                    //await sherText(@"شده اموزش زبان اصلی دانلود کنی
                     //ولی زیر نویس فارسی نداشته باشه؟
                     //یا فیلم و سریال قدیمی که زیرنویس فارسی هماهنگ پیدا نکنی؟
                     //با دریافت این اپلیکشن راحت زیر نویس ها رو از هر زبانی به فارسی ترجمه کن
                     //https://www.charkhoneh.com/content/931172500");
-                    //                });
+
                     await sherText(@"شده اموزش زبان اصلی دانلود کنی
                     ولی زیر نویس فارسی نداشته باشه؟
                     یا فیلم و سریال قدیمی که زیرنویس فارسی هماهنگ پیدا نکنی؟
@@ -149,20 +166,20 @@ namespace App1
                     https://myket.ir/app/myc.supernova.substitutetranslate");
                 });
             }
-            else if(id == Resource.Id.github) 
+            else if (id == Resource.Id.github)
             {
                 var uri = Android.Net.Uri.Parse("https://github.com/Zakarea79");
                 var inte = new Intent(Intent.ActionView, uri);
                 StartActivity(inte);
             }
-            else if(id == Resource.Id.myket) 
+            else if (id == Resource.Id.myket)
             {
                 var uri = Android.Net.Uri.Parse("https://myket.ir/developer/dev-65034");
                 //var uri = Android.Net.Uri.Parse("https://www.charkhoneh.com/collection/78692/game/110806");
                 var inte = new Intent(Intent.ActionView, uri);
                 StartActivity(inte);
             }
-            else if(id == Resource.Id.wondo) 
+            else if (id == Resource.Id.wondo)
             {
                 var uri = Android.Net.Uri.Parse("https://supernovaofficial.blogsky.com/Getwindowsversion");
                 var inte = new Intent(Intent.ActionView, uri);
@@ -180,10 +197,9 @@ namespace App1
                 Title = "اشتراک برنامه"
             });
         }
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }

@@ -45,7 +45,21 @@ namespace App1
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             SetContentView(Resource.Layout.auto_transleat);
-            
+
+            #region ResatData
+            publicClassAndroid.info.form = 0;
+            publicClassAndroid.info.to = 0;
+            publicClassAndroid.info.Transleat.Clear();
+            publicClassAndroid.info.pathSrtFile = "";
+
+            publicClassAndroid.To = 0;
+            publicClassAndroid.From = 0;
+            publicClassAndroid.StButtonStatuse = false;
+            publicClassAndroid.Folderpath = "";
+            publicClassAndroid.FileSelected.Clear();
+            publicClassAndroid.enumBtnStatuse = backButtonStatuse.mainLayout;
+            #endregion
+
             //threadGetText = new Thread(new ParameterizedThreadStart(GetTextThread));
 
             #region ElemetPage
@@ -87,12 +101,15 @@ namespace App1
             #region Button
             buttonVisullback.Click += (s, e) =>
             {
+                publicClassAndroid.StButtonStatuse = true;
+                btnChack = false;
                 StartActivity(typeof(MainActivity));
                 Finish();
             };
 
             BtnOpenFolder.Click += (s, e) =>
             {
+                publicClassAndroid.enumBtnStatuse = backButtonStatuse.autoTransleat;
                 StartActivity(typeof(FolderPicker));
                 Finish();
             };
@@ -214,6 +231,8 @@ namespace App1
         //}
         public override void OnBackPressed()
         {
+            publicClassAndroid.StButtonStatuse = true;
+            btnChack = false;
             StartActivity(typeof(MainActivity));
             Finish();
         }

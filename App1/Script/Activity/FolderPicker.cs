@@ -10,7 +10,7 @@ namespace App1
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class FolderPicker : Activity
     {
-        private string path_maian = "/storage/emulated/0/";
+        private readonly string path_maian = "/storage/emulated/0/";
         private string this_pats = "/storage/emulated/0/";
 
         private ListView listFolder;
@@ -69,7 +69,7 @@ namespace App1
                     this_pats = "selected file " + '\u2713';
                 }
                 publicClassAndroid.Folderpath = this_pats;
-                StartActivity(typeof(MainActivity));
+                StartActivity(typeof(auto_transleat));
                 Finish();
             };
 

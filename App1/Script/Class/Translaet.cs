@@ -14,8 +14,8 @@ namespace sub_Transleator_x
         static public string PathFolderExport;
         //static private List<string> Calection = new List<string>();
         //--------------------------------------------------------
-        static private List<string> info = new List<string>();
-        static private List<string> Text = new List<string>();
+        static private readonly List<string> info = new List<string>();
+        static private readonly List<string> Text = new List<string>();
         //---------------------------------------------------------
         static private List<string> androidListView = new List<string>();
 
@@ -32,7 +32,14 @@ namespace sub_Transleator_x
                     return new List<string>();
                 }
                 //int prograss = 0;
-                temp.Add(TransleatClass.Translate(Input[i]) + "\n\n");
+                while (true)
+                {
+                    try
+                    {
+                        temp.Add(TransleatClass.Translate(Input[i]) + "\n\n");
+                        break;
+                    }catch {;}
+                }
 
                 PrograssBar("#", i, Input.Count, ref prograss);
                 App1.auto_transleat.data.Persent = prograss;

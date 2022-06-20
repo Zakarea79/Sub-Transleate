@@ -10,6 +10,7 @@ using System.IO;
 using Android.Text;
 using System;
 using static Android.Views.View;
+using System.Threading.Tasks;
 
 namespace App1
 {
@@ -18,12 +19,12 @@ namespace App1
     {
         private LinearLayout  daealogmaneager , linearLayoutDalog;
         private TableLayout tableLayout;
-        private List<View> MyViewColection = new List<View>();
+        private readonly List<View> MyViewColection = new List<View>();
         private ImageView btn_bak, btn_Save, btn_Delet;
         private bool Chproject = false;
-        private List<EditText> editTextsList = new List<EditText>();
-        private List<myDictionary> FileInfov = new List<myDictionary>();
-        private string PathJsonFile = $"/storage/emulated/0/Android/data/myc.supernova.substitutetranslate/{Path.GetFileNameWithoutExtension(publicClassAndroid.info.pathSrtFile)}.json";
+        private readonly List<EditText> editTextsList = new List<EditText>();
+        private readonly List<myDictionary> FileInfov = new List<myDictionary>();
+        private readonly string PathJsonFile = $"/storage/emulated/0/subproject/{Path.GetFileNameWithoutExtension(publicClassAndroid.info.pathSrtFile)}.json";
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -138,27 +139,37 @@ namespace App1
             if (File.Exists(PathJsonFile) == false)
             {
                 string jsondata = JsonConvert.SerializeObject(publicClassAndroid.info);
-                File.WriteAllText($"/storage/emulated/0/Android/data/myc.supernova.substitutetranslate/{Path.GetFileNameWithoutExtension(publicClassAndroid.info.pathSrtFile)}.json", jsondata);
+                File.WriteAllText($"/storage/emulated/0/subproject/{Path.GetFileNameWithoutExtension(publicClassAndroid.info.pathSrtFile)}.json", jsondata);
             }
             Chproject = false;
         }
 
         [Export("BtnClick")]
-        public void BtnClick(View v)
+        public async void BtnClickAsync(View v)
         {
+            v.Enabled = false;
             LinearLayout view = (LinearLayout)v.Parent;
-
             LinearLayout mainParint = (LinearLayout)view.Parent;
-
             var tempview = mainParint.GetChildAt(3) as TextView;
-
             var TempEditText = view.GetChildAt(0) as EditText;
-
-            publicClassAndroid.From = publicClassAndroid.info.form;
-
-            publicClassAndroid.To = publicClassAndroid.info.to;
-
-            TempEditText.Text = TransleatClass.Translate(tempview.Text);
+            await Task.Run(() => 
+            {
+                RunOnUiThread(() => 
+                {
+                    try
+                    {
+                        publicClassAndroid.From = publicClassAndroid.info.form;
+                        publicClassAndroid.To = publicClassAndroid.info.to;
+                        TempEditText.Text = TransleatClass.Translate(tempview.Text);
+                    }
+                    catch (Exception)
+                    {
+                        Toast.MakeText(this, "اتصال اینترنت را برسی کنید", ToastLength.Short).Show();
+                    }
+                    
+                });
+            });
+            v.Enabled = true;
         }
 
         [Export("Deleatroject")]
@@ -179,8 +190,6 @@ namespace App1
             btn_bak.Visibility = ViewStates.Visible;
             btn_Save.Visibility = ViewStates.Visible;
             btn_Delet.Visibility = ViewStates.Visible;
-            //-----------------------------------------------------
-            //linearLayoutDelet.Visibility = ViewStates.Invisible;
             //-----------------------------------------------------
         }
         [Export("SaveProject")]
