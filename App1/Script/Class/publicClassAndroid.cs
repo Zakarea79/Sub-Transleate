@@ -30,6 +30,5 @@ namespace App1
             FileSelected.Clear();
             enumBtnStatuse = backButtonStatuse.mainLayout;
         }
-
     }
 }

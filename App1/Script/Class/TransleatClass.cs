@@ -48,7 +48,7 @@ namespace sub_Transleator_x
 
         private static string JsonDecod(string JsonData)
         {
-            var tmp = JsonConvert.DeserializeObject<Root>(JsonData);
+            Root tmp = JsonConvert.DeserializeObject<Root>(JsonData);
             return tmp.sentences[0].trans;
         }
         public static string Translate(string input)

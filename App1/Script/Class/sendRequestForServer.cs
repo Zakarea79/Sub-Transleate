@@ -57,7 +57,7 @@ namespace sub_Transleator_x
             {
                 { "sl" , requestSetting.source},
                 { "tl" , requestSetting.target},
-                {  "q" , requestSetting.text}
+                { "q" , requestSetting.text}
             });
             Data = data;
         }

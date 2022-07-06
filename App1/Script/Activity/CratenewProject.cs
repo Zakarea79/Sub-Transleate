@@ -22,7 +22,7 @@ namespace App1
             SetContentView(Resource.Layout.crate_new_project);
 
             #region Set ID
-            buttonSelectFile = FindViewById<Button   > (Resource.Id.chFile            );
+            buttonSelectFile   = FindViewById<Button   > (Resource.Id.chFile            );
             buttonCrateProject = FindViewById<Button   > (Resource.Id.CarteProject      );
             backVisullButton   = FindViewById<ImageView> (Resource.Id.buttonBak         );
             TextFilePath       = FindViewById<TextView > (Resource.Id.Textselectfile    );
@@ -52,8 +52,13 @@ namespace App1
                     tmp.Add(Path.GetFileNameWithoutExtension(item));
                 }
             }
-            ProjectListView.ItemClick += Click_List_View;
+
+            ProjectListView.ItemClick     += Click_List_View;
+            ProjectListView.ItemLongClick += Long_Click_List_View;
             ProjectListView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, tmp);
+
+            array.Clone();
+            tmp.Clear();
 
             if (publicClassAndroid.FileSelected.Count != 0)
                 TextFilePath.Text = publicClassAndroid.FileSelected[0];
@@ -101,12 +106,73 @@ namespace App1
             var jsonformat = File.ReadAllText(PathJsonFile + $"{textView.Text}.json");
             var jsondata = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(jsonformat);
 
-            publicClassAndroid.info.pathSrtFile = jsondata.pathSrtFile;
-            publicClassAndroid.info.form = jsondata.form;
-            publicClassAndroid.info.to = jsondata.to;
-            StartActivity(typeof(HandelSub));
-            Finish();
+            if (File.Exists(jsondata.pathSrtFile) == false)
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.SetTitle("پیام");
+                alert.SetMessage("امکان باز کردن پروژه وجود نداره! ایا میخواهید پروژه را حذف کنید؟");
+                alert.SetPositiveButton("حذف", (s, e) =>
+                {
+                    File.Delete(PathJsonFile + $"{textView.Text}.json");
+
+                    string[] array = Directory.GetFiles(PathJsonFile);
+                    List<string> tmp = new List<string>();
+                    foreach (var item in array)
+                    {
+                        if (Path.GetExtension(item).ToUpper() == ".JSON")
+                        {
+                            tmp.Add(Path.GetFileNameWithoutExtension(item));
+                        }
+                    }
+
+                    ProjectListView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, tmp);
+
+                    array.Clone();
+                    tmp.Clear();
+                });
+                alert.SetNegativeButton("لغو", (s, e) => {; });
+                alert.Show();
+            }
+            else
+            {
+                publicClassAndroid.info.pathSrtFile = jsondata.pathSrtFile;
+                publicClassAndroid.info.form = jsondata.form;
+                publicClassAndroid.info.to = jsondata.to;
+                StartActivity(typeof(HandelSub));
+                Finish();
+            }
         }
+
+        private void Long_Click_List_View(object sender, AdapterView.ItemLongClickEventArgs e)
+        {
+            TextView textView = e.View as TextView;
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("پیام");
+            alert.SetMessage("ایا میخواهید پروژه را حذف کنید؟");
+            alert.SetPositiveButton("حذف", (s, e) => 
+            {
+                File.Delete(PathJsonFile + $"{textView.Text}.json");
+
+                string[] array = Directory.GetFiles(PathJsonFile);
+                List<string> tmp = new List<string>();
+                foreach (var item in array)
+                {
+                    if (Path.GetExtension(item).ToUpper() == ".JSON")
+                    {
+                        tmp.Add(Path.GetFileNameWithoutExtension(item));
+                    }
+                }
+
+                ProjectListView.Adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, tmp);
+
+                array.Clone();
+                tmp.Clear();
+            });
+            alert.SetNegativeButton("لغو", (s, e) => { ; });
+            alert.Show();
+        }
+
         public override void OnBackPressed()
         {
             publicClassAndroid.ReseatData();

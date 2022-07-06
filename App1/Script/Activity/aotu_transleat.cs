@@ -24,12 +24,12 @@ namespace App1
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]//, MainLauncher = true)]
     public class auto_transleat : Activity
     {
-        private Android.Widget.ListView listView_;
-        private Android.Widget.TextView TxtOpenFolder;
-        private Android.Widget.TextView Prograss;
-        private Android.Widget.Button BtnOpenFolder, BtnOpenStart;
-        private Android.Widget.ImageView buttonVisullback;
-        private Android.Widget.Spinner SpierFrom, SpierTo;
+        private Android.Widget.ListView    listView_;
+        private Android.Widget.TextView    TxtOpenFolder;
+        private Android.Widget.TextView    Prograss;
+        private Android.Widget.Button      BtnOpenFolder, BtnOpenStart;
+        private Android.Widget.ImageView   buttonVisullback;
+        private Android.Widget.Spinner     SpierFrom, SpierTo;
         private Android.Widget.ProgressBar progressB;
 
         private List<string> ComplectFile = new List<string>();
@@ -46,32 +46,16 @@ namespace App1
 
             SetContentView(Resource.Layout.auto_transleat);
 
-            #region ResatData
-            publicClassAndroid.info.form = 0;
-            publicClassAndroid.info.to = 0;
-            publicClassAndroid.info.Transleat.Clear();
-            publicClassAndroid.info.pathSrtFile = "";
-
-            publicClassAndroid.To = 0;
-            publicClassAndroid.From = 0;
-            publicClassAndroid.StButtonStatuse = false;
-            publicClassAndroid.Folderpath = "";
-            publicClassAndroid.FileSelected.Clear();
-            publicClassAndroid.enumBtnStatuse = backButtonStatuse.mainLayout;
-            #endregion
-
-            //threadGetText = new Thread(new ParameterizedThreadStart(GetTextThread));
-
             #region ElemetPage
-            BtnOpenFolder = FindViewById<Android.Widget.Button>(Resource.Id.MainActivityBtnOpenFolder);
-            BtnOpenStart = FindViewById<Android.Widget.Button>(Resource.Id.MainActivityBtnStartTranslet);
-            buttonVisullback = FindViewById<Android.Widget.ImageView>(Resource.Id.buttonBak);
-            TxtOpenFolder = FindViewById<Android.Widget.TextView>(Resource.Id.MainActivityTxtOpenFolder);
-            listView_ = FindViewById<Android.Widget.ListView>(Resource.Id.listView1);
-            SpierFrom = FindViewById<Android.Widget.Spinner>(Resource.Id.spinnerFrom);
-            SpierTo = FindViewById<Android.Widget.Spinner>(Resource.Id.spinnerTo);
-            progressB = FindViewById<Android.Widget.ProgressBar>(Resource.Id.progressBar1);
-            Prograss = FindViewById<Android.Widget.TextView>(Resource.Id.textViewprogressBarPersent);
+            BtnOpenFolder    = FindViewById<Android.Widget.Button     >(Resource.Id.MainActivityBtnOpenFolder   );
+            BtnOpenStart     = FindViewById<Android.Widget.Button     >(Resource.Id.MainActivityBtnStartTranslet);
+            buttonVisullback = FindViewById<Android.Widget.ImageView  >(Resource.Id.buttonBak                   );
+            TxtOpenFolder    = FindViewById<Android.Widget.TextView   >(Resource.Id.MainActivityTxtOpenFolder   );
+            listView_        = FindViewById<Android.Widget.ListView   >(Resource.Id.listView1                   );
+            SpierFrom        = FindViewById<Android.Widget.Spinner    >(Resource.Id.spinnerFrom                 );
+            SpierTo          = FindViewById<Android.Widget.Spinner    >(Resource.Id.spinnerTo                   );
+            progressB        = FindViewById<Android.Widget.ProgressBar>(Resource.Id.progressBar1                );
+            Prograss         = FindViewById<Android.Widget.TextView   >(Resource.Id.textViewprogressBarPersent  );
             #endregion
 
             TxtOpenFolder.Text = publicClassAndroid.Folderpath == "" ? "Unselected folder" : publicClassAndroid.Folderpath;
@@ -101,6 +85,7 @@ namespace App1
             #region Button
             buttonVisullback.Click += (s, e) =>
             {
+                publicClassAndroid.ReseatData();
                 publicClassAndroid.StButtonStatuse = true;
                 btnChack = false;
                 StartActivity(typeof(MainActivity));
@@ -212,11 +197,13 @@ namespace App1
                 Prograss.Text = "0%";
                 SpierFrom.Enabled = true;
                 SpierTo.Enabled = true;
+                publicClassAndroid.From = 0;
+                publicClassAndroid.To = 0;
 
                 progressB.Visibility = ViewStates.Invisible;
                 Prograss.Visibility = ViewStates.Invisible;
 
-                publicClassAndroid.FileSelected.Clear();
+                publicClassAndroid.ReseatData();
                 ComplectFile.Clear();
             }
             else
@@ -231,6 +218,7 @@ namespace App1
         //}
         public override void OnBackPressed()
         {
+            publicClassAndroid.ReseatData();
             publicClassAndroid.StButtonStatuse = true;
             btnChack = false;
             StartActivity(typeof(MainActivity));

@@ -23,7 +23,7 @@
 
 		<item
             android:id="@+id/myket"
-            android:icon="@drawable/xhar"
+            android:icon="@drawable/myket"
             android:title="More Apps" />
 	</group>
 
